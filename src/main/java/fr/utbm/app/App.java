@@ -1,10 +1,19 @@
 package fr.utbm.app;
 
+import java.util.List;
+
+import fr.utbm.entity.Course;
+import fr.utbm.repository.JasperDAO;
+
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Test");
+		// TODO Auto-generated method st
+		JasperDAO jDAO = new JasperDAO();
+		List<Course> list = jDAO.getListCourseByTitle("Data");
+		
+		for (Course course : list) {
+			System.out.println(course.getTitle());
+		}
 	}
-
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CourseSession {
 	private int id;
-	private int loacationId;
+	private int locationId;
 	private Date startDate;
 	private Date endDate;
 	private String courseCode;
@@ -19,11 +19,11 @@ public class CourseSession {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getLoacationId() {
-		return loacationId;
+	public int getLocationId() {
+		return locationId;
 	}
-	public void setLoacationId(int loacationId) {
-		this.loacationId = loacationId;
+	public void setLocationId(int loacationId) {
+		this.locationId = loacationId;
 	}
 	public Date getStartDate() {
 		return startDate;
