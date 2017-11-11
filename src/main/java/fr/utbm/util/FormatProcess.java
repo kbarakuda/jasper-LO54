@@ -1,4 +1,4 @@
-package fr.utbm.Util;
+package fr.utbm.util;
 
 public class FormatProcess {
 	

@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import fr.utbm.Util.FormatProcess;
 import org.hibernate.Session;
 
-import fr.utbm.Util.HibernateUtil;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course;
+import fr.utbm.util.FormatProcess;
+import fr.utbm.util.HibernateUtil;
 
 public class JasperDAO {
 	private Session session = HibernateUtil.getSessionFactory().openSession();
