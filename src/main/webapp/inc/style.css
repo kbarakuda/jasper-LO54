@@ -1,0 +1,37 @@
+/* Space out content a bit */
+body {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+
+#header_{
+	color:#dc3545;
+}
+
+.divider {
+  height: 1px;
+  width:100%;
+  display:block; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+a{
+	color:grey;
+}
+
+#listeFormation{
+	margin-top: 20px;
+}
+
+.icon-pdf{
+	width:17%;
+}
+
+
+
+
+
+
