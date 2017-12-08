@@ -1,13 +1,44 @@
 package fr.utbm.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity(name="COURSE_SESSION")
 public class CourseSession {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="COURSE_SESSION_ID")
 	private int id;
-	private int locationId;
+	
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="LOCATION_ID")
+	private Location location;
+	
+	@Column(name="START_DATE", nullable=false)
 	private Date startDate;
+	
+	@Column(name="END_DATE", nullable=false)
 	private Date endDate;
-	private String courseCode;
+	
+
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="COURSE_CODE")
+	private Course course;
+	
+	@OneToMany(mappedBy="courseSession",fetch=FetchType.EAGER)
+	private List<Client> subscribers;
+	
 	
 	public CourseSession() {
 		
@@ -19,11 +50,11 @@ public class CourseSession {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getLocationId() {
-		return locationId;
+	public Location getLocation() {
+		return location;
 	}
-	public void setLocationId(int loacationId) {
-		this.locationId = loacationId;
+	public void setLocation(Location loacation) {
+		this.location = loacation;
 	}
 	public Date getStartDate() {
 		return startDate;
@@ -37,10 +68,18 @@ public class CourseSession {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getCourseCode() {
-		return courseCode;
+	public Course getCourse() {
+		return course;
 	}
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
+
+	@Override
+	public String toString() {
+		return "CourseSession [id=" + id + ", location=" + location + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", course=" + course + ", subscribers=" + subscribers + "] \n";
+	}
+	
+	
 }

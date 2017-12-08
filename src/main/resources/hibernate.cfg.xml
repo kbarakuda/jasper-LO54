@@ -12,16 +12,20 @@
         <property name="connection.url"> jdbc:postgresql://localhost:5432/postgres</property>
         <property name="connection.username">postgres</property>
 	<property name="connection.password">admin</property>
-	<property name="connection.pool_size">1</property>
+	<property name="connection.pool_size">10</property>
 
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="current_session_context_class">thread</property>
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
         <property name="hbm2ddl.auto">validate</property>
-        <!--Mapping-->
+        <!--Mapping
         <mapping resource="fr/utbm/entity/Client.hbm.xml"/>
         <mapping resource="fr/utbm/entity/Course.hbm.xml"/>
         <mapping resource="fr/utbm/entity/CourseSession.hbm.xml"/>
-        <mapping resource="fr/utbm/entity/Location.hbm.xml"/>
+        <mapping resource="fr/utbm/entity/Location.hbm.xml"/>-->
+        <mapping class="fr.utbm.entity.Client" />
+        <mapping class="fr.utbm.entity.Course" /> 
+        <mapping class="fr.utbm.entity.CourseSession" /> 
+        <mapping class="fr.utbm.entity.Location" /> 
     </session-factory>
 </hibernate-configuration>
