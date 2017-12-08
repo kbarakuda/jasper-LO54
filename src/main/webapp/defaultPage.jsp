@@ -77,16 +77,12 @@
 			</div>
 			<div class="col-lg-2">
 				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="true">
-						Lieu de formation <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-					</ul>
+					<select class="form-control">
+						<option>Lieu de formation</option>
+						<c:forEach var="lieuFormation" items="${requestScope.listLieuFormation}">
+							<option>${lieuFormation}</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class='col-lg-2'>

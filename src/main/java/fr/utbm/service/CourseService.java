@@ -1,6 +1,7 @@
 package fr.utbm.service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import fr.utbm.entity.Client;
@@ -19,6 +20,11 @@ public class CourseService {
 	public List<CourseSession> getListCourseSession() {
 		jDAO = new JasperDAO();
 		return jDAO.getListCourseSession();
+	}
+	
+	public List<CourseSession> getListCourseSessionByTerm(String term) {
+		jDAO = new JasperDAO();
+		return jDAO.getListCourseSessionByTerm(term);
 	}
 	
 	public CourseSession getListCourseSessionById(int id) {
@@ -44,5 +50,14 @@ public class CourseService {
 	public int saveClient(Client c) {
 		jDAO = new JasperDAO();
 		return jDAO.saveClient(c);
+	}
+
+	public LinkedList<String> getLieuFormation(List<CourseSession> list) {
+		LinkedList<String> listLieu = new LinkedList<String>();
+		for (CourseSession courseSession : list) {
+			if(!listLieu.contains(courseSession.getLocation().getCity()))
+				listLieu.add(courseSession.getLocation().getCity()); 
+		}
+		return listLieu;
 	}
 }

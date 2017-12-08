@@ -56,7 +56,7 @@ public class JasperDAO {
 	public List<CourseSession> getListCourseSession() {
 		session = HibernateUtil.getSessionFactory().openSession();
 		@SuppressWarnings("unchecked")
-		List<CourseSession> courseList = session.createQuery("from COURSE_SESSION")
+		List<CourseSession> courseList = session.createQuery("from CourseSession")
 									.getResultList() ;
 		session.close();
 		return courseList;
@@ -66,7 +66,7 @@ public class JasperDAO {
 		session = HibernateUtil.getSessionFactory().openSession();
 		CourseSession courseSession = null;
 		try {
-			courseSession = (CourseSession) session.createQuery("from COURSE_SESSION WHERE course_session_id = :id")
+			courseSession = (CourseSession) session.createQuery("from CourseSession as cs WHERE cs.id = :id")
 					.setParameter("id", id)
 					.getSingleResult();
 		}catch (Exception e) {
@@ -88,7 +88,7 @@ public class JasperDAO {
 		
 		//.setParameter(0, FormatProcess.concactQuery(term))
 		@SuppressWarnings("unchecked")
-		List<Course> courseList = session.createQuery("from Course Where upper(title) like :term OR upper(course_code) like :term")
+		List<Course> courseList = session.createQuery("from Course as c Where upper(c.title) like :term OR upper(c.code) like :term")
 									.setParameter("term", FormatProcess.concactQuery(term))
 									.getResultList() ;
 		ArrayList<String> courseListTitle = new ArrayList<String>();
@@ -99,7 +99,19 @@ public class JasperDAO {
 		session.close();
 		return courseListTitle;
 	}
-
+	
+	public List<CourseSession> getListCourseSessionByTerm(String term) {
+		session = HibernateUtil.getSessionFactory().openSession();
+		//.setParameter("term", FormatProcess.concactQuery(term.toUpperCase()))
+		
+		@SuppressWarnings("unchecked")
+		List<CourseSession> courseList = session.createQuery("from CourseSession as cs Where upper(cs.course.title) like :term OR upper(cs.course.code) like :term")
+									.setParameter("term", FormatProcess.concactQuery(term.toUpperCase()))
+									.getResultList() ;
+		session.close();
+		return courseList;
+	}
+	
 	public List<Course> getListCourseByDate(String startDate, String endDate) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		@SuppressWarnings("unchecked")
@@ -131,4 +143,6 @@ public class JasperDAO {
 	public void closeSession() {
 		this.session.close();
 	}
+
+	
 }

@@ -26,12 +26,14 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CourseService cs = new CourseService();
 		List<CourseSession> list;
-		if(request.getParameter("searchTerm") != null) {
-			list = cs.getListCourseSession();
+		if(request.getParameter("searchTerm")!=null && !request.getParameter("searchTerm").isEmpty()) {
+			list = cs.getListCourseSessionByTerm(request.getParameter("searchTerm"));
 		}else {
 			list = cs.getListCourseSession();
 		}
-		request.setAttribute("listCourseSession", list);  
+		List<String> listLieuFormation = cs.getLieuFormation(list);
+		request.setAttribute("listCourseSession", list); 
+		request.setAttribute("listLieuFormation", listLieuFormation); 
 		this.getServletContext().getRequestDispatcher("/defaultPage.jsp").forward(request, response);
 	}
 

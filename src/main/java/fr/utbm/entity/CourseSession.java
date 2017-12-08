@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity(name="COURSE_SESSION")
+@Entity
+@Table(name="COURSE_SESSION")
 public class CourseSession {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

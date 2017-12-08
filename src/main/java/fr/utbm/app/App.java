@@ -11,7 +11,7 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method st
 		JasperDAO jDAO = new JasperDAO();
-		List<CourseSession> list = jDAO.getListCourseSession();
+		List<CourseSession> list = jDAO.getListCourseSessionByTerm("AD");
 		
 		for (CourseSession course : list) {
 			System.out.println(course);
