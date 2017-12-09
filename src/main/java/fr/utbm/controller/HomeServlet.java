@@ -2,6 +2,7 @@ package fr.utbm.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.CourseSession;
 import fr.utbm.service.CourseService;
+import fr.utbm.util.FormatProcess;
 
 
 /**
@@ -26,9 +28,25 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CourseService cs = new CourseService();
 		List<CourseSession> list;
+		HashMap<String, String> searchMap = new HashMap<String, String>();
+		int search = 0;
 		if(request.getParameter("searchTerm")!=null && !request.getParameter("searchTerm").isEmpty()) {
-			list = cs.getListCourseSessionByTerm(request.getParameter("searchTerm"));
-		}else {
+			searchMap.put("searchTerm", request.getParameter("searchTerm").toUpperCase());
+			search=1;
+		}
+		if(request.getParameter("date")!=null && !request.getParameter("date").isEmpty()) {
+			searchMap.put("date",request.getParameter("date"));
+			search=1;
+		}
+		if(request.getParameter("lieuFormation")!=null && !request.getParameter("lieuFormation").isEmpty()) {
+			searchMap.put("lieuFormation", request.getParameter("lieuFormation").toUpperCase());
+			search=1;
+		} 
+		
+		if(search==1) {
+			list = cs.getListCourseSessionByTerms(searchMap); 
+		}
+		else {
 			list = cs.getListCourseSession();
 		}
 		List<String> listLieuFormation = cs.getLieuFormation(list);

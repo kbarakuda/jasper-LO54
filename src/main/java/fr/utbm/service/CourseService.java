@@ -1,6 +1,7 @@
 package fr.utbm.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,11 +43,6 @@ public class CourseService {
 		return jDAO.getListCourseByDate(startDate,endDate);
 	}
 
-	public List<Course> getListCourseByLocation(String loc) {
-		jDAO = new JasperDAO();
-		return jDAO.getListCourseByLocation(loc);
-	}
-	
 	public int saveClient(Client c) {
 		jDAO = new JasperDAO();
 		return jDAO.saveClient(c);
@@ -59,5 +55,11 @@ public class CourseService {
 				listLieu.add(courseSession.getLocation().getCity()); 
 		}
 		return listLieu;
+	}
+
+	public List<CourseSession> getListCourseSessionByTerms(HashMap<String, String> searchMap) {
+		jDAO = new JasperDAO();
+		return jDAO.getListCourseSessionByTerms(searchMap);
+		
 	}
 }

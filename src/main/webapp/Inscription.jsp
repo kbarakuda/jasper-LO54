@@ -49,6 +49,7 @@
 				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 				  </div>
 				  <input type="submit" class="btn btn-primary" value="Valider mon inscription" />
+				  <a href="http://localhost:8080/jasper/home" class="btn btn-primary" role="button">Retour</a>
 				</form>
     		</div>
     		<div class="col-md-4">
