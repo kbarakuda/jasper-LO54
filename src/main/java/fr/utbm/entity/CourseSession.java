@@ -41,7 +41,8 @@ public class CourseSession {
 	@OneToMany(mappedBy="courseSession",fetch=FetchType.EAGER)
 	private List<Client> subscribers;
 	
-	
+
+
 	public CourseSession() {
 		
 	}
@@ -76,7 +77,14 @@ public class CourseSession {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	
+	public List<Client> getSubscribers() {
+		return subscribers;
+	}
 
+	public void setSubscribers(List<Client> subscribers) {
+		this.subscribers = subscribers;
+	}
 	@Override
 	public String toString() {
 		return "CourseSession [id=" + id + ", location=" + location + ", startDate=" + startDate + ", endDate="
