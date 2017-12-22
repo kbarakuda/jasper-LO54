@@ -24,7 +24,7 @@ public class InscriptionServlet extends HttpServlet {
 		try {
 			int id = new Integer(request.getParameter("formation"));
 			CourseService cs = new CourseService();
-			CourseSession courseSession = cs.getListCourseSessionById(id);
+			CourseSession courseSession = cs.getCourseSessionById(id);
 			request.setAttribute("courseSession", courseSession);  
 			this.getServletContext().getRequestDispatcher("/Inscription.jsp").forward(request, response);
 		}catch (NumberFormatException e) {

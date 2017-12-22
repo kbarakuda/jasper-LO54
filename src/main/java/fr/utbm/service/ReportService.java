@@ -27,30 +27,28 @@ public class ReportService {
 		 try {
 		/* Convert List to JRBeanCollectionDataSource */
 	    List<reportItem> listItems = new ArrayList<reportItem>();
-	    int i=0;
-	    for(Client c : cs.getSubscribers()) {
-	    	listItems.add(new reportItem(c.getFirstName(),cs.getStartDate()));
-	    	System.out.println(listItems.get(i).toString());
-	    	i++;
-	    }
-	    
-	    
+	    for(Client c : cs.getSubscribers())
+	    	listItems.add(new reportItem(c.getFirstName()+" "+c.getLastName(),c.getAddress(),c.getPhone(),c.getEmail()));
+
         JRBeanCollectionDataSource itemsJRBean = new JRBeanCollectionDataSource(listItems);
         List<reportItem> list = new ArrayList<reportItem>();
         reportItem rI = new reportItem();
         rI.setCourseCode(cs.getCourse().getCode());
         list.add(rI);
-        JRBeanCollectionDataSource itemsRBeanCourseCode = new JRBeanCollectionDataSource(list);
+        
         /* Map to hold Jasper report Parameters */
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("ItemDataSource", itemsJRBean);
-        parameters.put("ItemDataSourceCourseCode", cs.getCourse().getCode());
+        parameters.put("CourseCode", cs.getCourse().getCode());
+        parameters.put("Location", cs.getLocation().getCity());
+        parameters.put("startDate", cs.getStartDate());
+        parameters.put("endDate", cs.getEndDate());
 
 
         /* Using compiled version(.jasper) of Jasper report to generate PDF */
-        JasperPrint jasperPrint = JasperFillManager.fillReport("C:/Users/user/eclipse-workspace/jasper/Template.jasper", parameters, new JREmptyDataSource());
+        JasperPrint jasperPrint = JasperFillManager.fillReport("C:/Users/user/eclipse-workspace/jasper/src/main/resources/Template.jasper", parameters, new JREmptyDataSource());
 
-        String outputFile = "C:/Users/user/Desktop/report.pdf";
+        String outputFile = "C:/Users/user/eclipse-workspace/jasper/src/main/webapp/downloads/InscritsCourseReport.pdf";
 		/* outputStream to create PDF */
         OutputStream outputStream = new FileOutputStream(new File(outputFile));
         /* Write content to PDF file */

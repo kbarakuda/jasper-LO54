@@ -51,22 +51,16 @@ public class JasperDAO {
 		return result;
 	}
 
-	public List<Course> getListCourse() {
-		session = HibernateUtil.getSessionFactory().openSession();
-		@SuppressWarnings("unchecked")
-		List<Course> courseList = session.createQuery("from Course").getResultList();
-		return courseList;
-	}
-
+ 
 	public List<CourseSession> getListCourseSession() {
 		session = HibernateUtil.getSessionFactory().openSession();
 		@SuppressWarnings("unchecked")
-		List<CourseSession> courseList = session.createQuery("from CourseSession").getResultList();
+		List<CourseSession> courseList = session.createQuery("from CourseSession as cs ORDER BY cs.course.code,cs.startDate").getResultList();
 		session.close();
 		return courseList;
 	}
 
-	public CourseSession getListCourseSessionById(int id) {
+	public CourseSession getCourseSessionById(int id) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		CourseSession courseSession = null;
 		try {
@@ -162,14 +156,6 @@ public class JasperDAO {
 		return courseList;
 	}
 
-	public List<Course> getListCourseByDate(String startDate, String endDate) {
-		session = HibernateUtil.getSessionFactory().openSession();
-		@SuppressWarnings("unchecked")
-		List<Course> courseList = session
-				.createQuery("from COURSE_SESSION Where start_date >= :startDate AND end_date <= :endDate")
-				.setParameter("startDate", startDate).setParameter("endDate", endDate).getResultList();
-		return courseList;
-	}
 
 	public Session getSession() {
 		return session;
@@ -179,9 +165,6 @@ public class JasperDAO {
 		this.session = session;
 	}
 
-	public int persistClient(Client c) {
-		return 1;
-	}
 
 	public void closeSession() {
 		this.session.close();

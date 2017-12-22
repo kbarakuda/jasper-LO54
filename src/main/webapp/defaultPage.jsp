@@ -43,8 +43,8 @@
 		<!-- Page header -->
 		<div class="row">
 			<div class="col-md-12 ">
-				<h2 id="header_" class="text-center" style="color: red">INSCRIPTION
-					A DES FORMATIONS TROP COOL</h2>
+				<h2 id="header_" class="text-center" style="color: red">		
+				<a href="http://localhost:8080/jasper/home" style="color: red; text-decoration:none;">INSCRIPTION A DES FORMATIONS TROP COOL</a></h2>
 			</div>
 			<hr class="divider"></hr>
 		</div>
@@ -103,10 +103,10 @@
 				<div class="form-group">
 					<div class='input-group date'>
 						<input id='datetimepicker' name='date' type='text'
-							class="form-control" placeholder="Ex: 12/07/2017 " value="${param.date}" /> <span
-							class="input-group-addon"> <span
-							class="glyphicon glyphicon-calendar"></span>
-						</span>
+							class="form-control" placeholder="Ex: 12/07/2017 " value="${param.date}" /> 
+							<span class="input-group-addon"> 
+								<label for="datetimepicker"><span class="glyphicon glyphicon-calendar"></span></label>
+							</span>
 					</div>
 
 				</div>
@@ -147,7 +147,7 @@
 								<td><c:out value="${courseSession.location.city}" /></td>
 								<td><img class="icon-pdf" alt="icon-pdf"
 									src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/file-pdf-128.png">
-									<a href="#"> To PDF</a></td>
+									<a href="http://localhost:8080/jasper/home?generatePDF=${courseSession.id}" target="_blank"> To PDF</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

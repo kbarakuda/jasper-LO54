@@ -13,11 +13,7 @@ import fr.utbm.repository.JasperDAO;
 public class CourseService {
 	private JasperDAO jDAO;
 
-	public List<Course> getListCourse() {
-		jDAO = new JasperDAO();
-		return jDAO.getListCourse();
-	}
-	
+
 	public List<CourseSession> getListCourseSession() {
 		jDAO = new JasperDAO();
 		return jDAO.getListCourseSession();
@@ -28,9 +24,9 @@ public class CourseService {
 		return jDAO.getListCourseSessionByTerm(term);
 	}
 	
-	public CourseSession getListCourseSessionById(int id) {
+	public CourseSession getCourseSessionById(int id) {
 		jDAO = new JasperDAO();
-		return jDAO.getListCourseSessionById(id);
+		return jDAO.getCourseSessionById(id);
 	}
 
 	public ArrayList<String> getListCourseByTitle(String s) {
@@ -38,10 +34,7 @@ public class CourseService {
 		return jDAO.getListCourseByTitle(s);
 	}
 
-	public List<Course> getListCourseByDate(String startDate, String endDate) {
-		jDAO = new JasperDAO();
-		return jDAO.getListCourseByDate(startDate,endDate);
-	}
+
 
 	public int saveClient(Client c) {
 		jDAO = new JasperDAO();

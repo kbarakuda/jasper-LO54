@@ -16,7 +16,8 @@
     <div class="container">
     	<!-- Page header -->
     	<div class="row">
-    		<div class="col-md-12 "> <h2 id="header_" class="text-center" style="color:red">INSCRIPTION A DES FORMATIONS TROP COOL</h2></div>
+    		<div class="col-md-12 "> <h2 id="header_" class="text-center" style="color:red">
+    			<a href="http://localhost:8080/jasper/home" style="color: red; text-decoration:none;">INSCRIPTION A DES FORMATIONS TROP COOL</a></h2></div>
     		<hr class="divider"></hr> 		
     	</div>
     	
